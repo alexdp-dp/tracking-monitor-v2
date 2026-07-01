@@ -7,7 +7,7 @@ def generate_dashboard(results):
     now = datetime.now(ZoneInfo("Europe/Bucharest"))
 
     last_check = now.strftime("%d.%m.%Y %H:%M:%S")
-    next_check = (now + timedelta(minutes=5)).strftime("%d.%m.%Y %H:%M:%S")
+    next_check = (now + timedelta(minutes=10)).strftime("%d.%m.%Y %H:%M:%S")
 
     html = f"""
 <!DOCTYPE html>
@@ -89,6 +89,7 @@ tr:hover{{
 <div class="info">
 <b>Last check:</b> {last_check}<br>
 <b>Next scheduled check:</b> {next_check}
+<b>Refresh every 10 minutes - can't be done on click or more often
 </div>
 
 <table>
