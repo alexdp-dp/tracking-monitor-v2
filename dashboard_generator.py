@@ -1,9 +1,10 @@
 from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 
 
 def generate_dashboard(results):
 
-    now = datetime.now()
+    now = datetime.now(ZoneInfo("Europe/Bucharest"))
 
     last_check = now.strftime("%d.%m.%Y %H:%M:%S")
     next_check = (now + timedelta(minutes=30)).strftime("%d.%m.%Y %H:%M:%S")
@@ -35,6 +36,7 @@ h1{{
 .info{{
     color:#666;
     line-height:1.7;
+    margin-bottom:20px;
 }}
 
 table{{
