@@ -1,0 +1,51 @@
+name: Tracking Monitor
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: "*/5 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Create .env
+        run: |
+          echo "EMAIL_FROM=${{ secrets.EMAIL_FROM }}" >> .env
+          echo "EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}" >> .env
+          echo "EMAIL_TO=${{ secrets.EMAIL_TO }}" >> .env
+
+      - name: Run monitor
+        run: |
+          python monitor.py
+
+      - name: Commit updated files
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add index.html status.json
+
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "Auto update dashboard"
+            git push
+          fi
