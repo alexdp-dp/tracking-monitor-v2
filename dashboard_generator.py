@@ -7,7 +7,7 @@ def generate_dashboard(results):
     now = datetime.now(ZoneInfo("Europe/Bucharest"))
 
     last_check = now.strftime("%d.%m.%Y %H:%M:%S")
-    next_check = (now + timedelta(minutes=30)).strftime("%d.%m.%Y %H:%M:%S")
+    next_check = (now + timedelta(minutes=5)).strftime("%d.%m.%Y %H:%M:%S")
 
     html = f"""
 <!DOCTYPE html>
