@@ -1,9 +1,12 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def generate_dashboard(results):
 
-    now = datetime.now().strftime("%d.%m.%Y %H:%M:%S")
+    now = datetime.now()
+
+    last_check = now.strftime("%d.%m.%Y %H:%M:%S")
+    next_check = (now + timedelta(minutes=30)).strftime("%d.%m.%Y %H:%M:%S")
 
     html = f"""
 <!DOCTYPE html>
@@ -29,8 +32,9 @@ h1{{
     margin-bottom:5px;
 }}
 
-small{{
+.info{{
     color:#666;
+    line-height:1.7;
 }}
 
 table{{
@@ -80,7 +84,10 @@ tr:hover{{
 
 <h1>Tracking Monitor</h1>
 
-<small>Last check: {now}</small>
+<div class="info">
+<b>Last check:</b> {last_check}<br>
+<b>Next scheduled check:</b> {next_check}
+</div>
 
 <table>
 
@@ -111,35 +118,25 @@ tr:hover{{
 
         ssl = "🟢" if site["ssl"] else "🔴"
 
-        if site["gtm"]["status"] == "OK":
-            gtm = "🟢"
-        else:
-            gtm = "🔴"
+        gtm = "🟢" if site["gtm"]["status"] == "OK" else "🔴"
 
         if site["ga4"]["status"] == "OK":
             ga4 = "🟢"
-
         elif site["ga4"]["status"] == "WARNING":
             ga4 = "🟡"
-
         else:
             ga4 = "🔴"
 
         if site["meta"]["status"] == "OK":
             meta = "🟢"
-
         elif site["meta"]["status"] == "WARNING":
             meta = "🟡"
-
         else:
             meta = "🔴"
 
         if site["status"] == "OK":
-
             status = '<span class="ok">🟢 OK</span>'
-
         else:
-
             status = '<span class="error">🔴 ERROR</span>'
 
         html += f"""
