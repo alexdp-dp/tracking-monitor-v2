@@ -146,7 +146,11 @@ tr:hover{{
 
 <tr>
 
-<td>{site['name']}</td>
+<td>
+    <a href="{site['url']}" target="_blank" style="text-decoration:none;color:#2563eb;font-weight:bold;">
+        {site['name']}
+    </a>
+</td>
 
 <td>{online}</td>
 
