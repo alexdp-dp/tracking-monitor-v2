@@ -89,31 +89,57 @@ tr:hover{{
 <div class="info">
 <b>Last check:</b> {last_check}<br>
 <b>Next scheduled check:</b> {next_check}
-<button id="refreshBtn" onclick="triggerRefresh()">Refresh</button>
+
+</div>
+<button
+    id="refreshBtn"
+    onclick="triggerRefresh()"
+    style="
+        margin:20px 0;
+        padding:10px 18px;
+        background:#2563eb;
+        color:white;
+        border:none;
+        border-radius:6px;
+        cursor:pointer;
+    ">
+    🔄 Refresh
+</button>
 
 <script>
-async function triggerRefresh() {
-  const btn = document.getElementById('refreshBtn');
-  btn.disabled = true;
-  btn.textContent = 'Refreshing...';
-  
-  try {
-    await fetch('https://eo9c97j9tnk2wis.m.pipedream.net', {
-      method: 'POST'
-    });
-    
-    btn.textContent = 'Refreshed ✓';
-    setTimeout(() => {
-      btn.disabled = false;
-      btn.textContent = 'Refresh';
-    }, 2000);
-  } catch (error) {
-    btn.textContent = 'Error ✗';
-    btn.disabled = false;
-  }
+
+async function triggerRefresh(){
+
+    const btn = document.getElementById("refreshBtn");
+
+    btn.disabled = true;
+    btn.textContent = "Refreshing...";
+
+    try{
+
+        await fetch("https://eo9c97j9tnk2wis.m.pipedream.net",{
+            method:"POST"
+        });
+
+        btn.textContent = "Started ✓";
+
+        setTimeout(()=>{
+            location.reload();
+        },5000);
+
+    }
+
+    catch(e){
+
+        btn.textContent="Error";
+
+        btn.disabled=false;
+
+    }
+
 }
+
 </script>
-</div>
 
 <table>
 
