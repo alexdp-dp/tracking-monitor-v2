@@ -9,7 +9,7 @@ load_dotenv()
 
 EMAIL_FROM = os.getenv("EMAIL_FROM")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
-EMAIL_TO = os.getenv("EMAIL_TO")
+EMAIL_TO = [email.strip() for email in os.getenv("EMAIL_TO").split(",")]
 
 
 def send_email(subject, body):
@@ -18,7 +18,7 @@ def send_email(subject, body):
 
     message["Subject"] = subject
     message["From"] = EMAIL_FROM
-    message["To"] = EMAIL_TO
+    message["To"] = ", ".join(EMAIL_TO)
 
     with smtplib.SMTP("smtp.gmail.com", 587) as smtp:
 
@@ -29,4 +29,8 @@ def send_email(subject, body):
             EMAIL_PASSWORD
         )
 
-        smtp.send_message(message)
+        smtp.sendmail(
+            EMAIL_FROM,
+            EMAIL_TO,
+            message.as_string()
+        )
