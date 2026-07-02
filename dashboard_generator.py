@@ -20,6 +20,7 @@ def generate_dashboard(results):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Tracking Monitor</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
 
 <style>
 
