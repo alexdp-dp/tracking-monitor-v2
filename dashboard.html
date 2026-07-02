@@ -76,13 +76,14 @@ tr:hover{
 <h1>Tracking Monitor</h1>
 
 <div class="info">
-<b>Last check:</b> 02.07.2026 12:31:21<br>
-<b>Next scheduled check:</b> 02.07.2026 12:41:21
+<b>Last check:</b> 02.07.2026 12:39:51<br>
+<b>Next scheduled check:</b> 02.07.2026 12:49:51
 
 </div>
 <button id="refreshBtn" onclick="triggerRefresh()">Refresh</button>
 
 <script>
+
 async function triggerRefresh() {
 
   const btn = document.getElementById('refreshBtn');
@@ -96,12 +97,28 @@ async function triggerRefresh() {
       method: 'POST'
     });
 
-    btn.textContent = 'Refreshed ✓';
+    let seconds = 180;
 
-    setTimeout(() => {
-      btn.disabled = false;
-      btn.textContent = 'Refresh';
-    }, 2000);
+    btn.textContent = `Refreshed ✓ (${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')})`;
+
+    const countdown = setInterval(() => {
+
+      seconds--;
+
+      btn.textContent = `Refreshed ✓ (${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')})`;
+
+      if(seconds <= 0) {
+
+        clearInterval(countdown);
+
+        btn.disabled = false;
+        btn.textContent = 'Refresh';
+
+        location.reload();
+
+      }
+
+    }, 1000);
 
   } catch (error) {
 
@@ -111,6 +128,7 @@ async function triggerRefresh() {
   }
 
 }
+
 </script>
 
 <table>
@@ -152,11 +170,11 @@ async function triggerRefresh() {
 
 <td>-</td>
 
-<td>🟢</td>
+<td>🔴</td>
 
-<td>G-TM4BZQ43BC</td>
+<td>-</td>
 
-<td>🟢</td>
+<td>🔴</td>
 
 <td><span class="error">🔴 ERROR</span></td>
 
@@ -232,17 +250,17 @@ async function triggerRefresh() {
 
 <td>🟢</td>
 
-<td>🟢</td>
+<td>🔴</td>
 
-<td>GTM-K8WXSCD</td>
+<td>-</td>
 
-<td>🟡</td>
+<td>🔴</td>
 
-<td>Via GTM</td>
+<td>-</td>
 
-<td>🟡</td>
+<td>🔴</td>
 
-<td><span class="ok">🟢 OK</span></td>
+<td><span class="error">🔴 ERROR</span></td>
 
 </tr>
 
@@ -264,11 +282,11 @@ async function triggerRefresh() {
 
 <td>-</td>
 
-<td>🟢</td>
+<td>🔴</td>
 
-<td>G-MRVT6XBFS3</td>
+<td>-</td>
 
-<td>🟢</td>
+<td>🔴</td>
 
 <td><span class="error">🔴 ERROR</span></td>
 
@@ -316,17 +334,17 @@ async function triggerRefresh() {
 
 <td>🟢</td>
 
-<td>🟢</td>
+<td>🔴</td>
 
-<td>GTM-WK5HK86</td>
+<td>-</td>
 
-<td>🟢</td>
+<td>🔴</td>
 
-<td>G-W8N1K679MQ</td>
+<td>-</td>
 
-<td>🟢</td>
+<td>🔴</td>
 
-<td><span class="ok">🟢 OK</span></td>
+<td><span class="error">🔴 ERROR</span></td>
 
 </tr>
 
@@ -400,17 +418,17 @@ async function triggerRefresh() {
 
 <td>🟢</td>
 
-<td>🟢</td>
+<td>🔴</td>
 
-<td>GTM-T4PF3DW4</td>
+<td>-</td>
 
-<td>🟢</td>
+<td>🔴</td>
 
-<td>G-F4P15Z6PNS</td>
+<td>-</td>
 
-<td>🟢</td>
+<td>🔴</td>
 
-<td><span class="ok">🟢 OK</span></td>
+<td><span class="error">🔴 ERROR</span></td>
 
 </tr>
 
@@ -456,17 +474,17 @@ async function triggerRefresh() {
 
 <td>🟢</td>
 
-<td>🟢</td>
+<td>🔴</td>
 
-<td>GTM-T8GVL573</td>
+<td>-</td>
 
-<td>🟡</td>
+<td>🔴</td>
 
-<td>Via GTM</td>
+<td>-</td>
 
-<td>🟢</td>
+<td>🔴</td>
 
-<td><span class="ok">🟢 OK</span></td>
+<td><span class="error">🔴 ERROR</span></td>
 
 </tr>
 
