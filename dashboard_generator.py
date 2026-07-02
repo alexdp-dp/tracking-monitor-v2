@@ -94,6 +94,7 @@ tr:hover{{
 <button id="refreshBtn" onclick="triggerRefresh()">Refresh</button>
 
 <script>
+
 async function triggerRefresh() {{
 
   const btn = document.getElementById('refreshBtn');
@@ -107,12 +108,28 @@ async function triggerRefresh() {{
       method: 'POST'
     }});
 
-    btn.textContent = 'Refreshed ✓';
+    let seconds = 180;
 
-    setTimeout(() => {{
-      btn.disabled = false;
-      btn.textContent = 'Refresh';
-    }}, 2000);
+    btn.textContent = `Refreshed ✓ (${{Math.floor(seconds/60)}}:${{String(seconds%60).padStart(2,'0')}})`;
+
+    const countdown = setInterval(() => {{
+
+      seconds--;
+
+      btn.textContent = `Refreshed ✓ (${{Math.floor(seconds/60)}}:${{String(seconds%60).padStart(2,'0')}})`;
+
+      if(seconds <= 0) {{
+
+        clearInterval(countdown);
+
+        btn.disabled = false;
+        btn.textContent = 'Refresh';
+
+        location.reload();
+
+      }}
+
+    }}, 1000);
 
   }} catch (error) {{
 
@@ -122,6 +139,7 @@ async function triggerRefresh() {{
   }}
 
 }}
+
 </script>
 
 <table>
