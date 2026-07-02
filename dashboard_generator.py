@@ -262,7 +262,7 @@ color:#444;
 
 </div>
 <div style="margin-top:6px;">
-Internal Monitoring Tool
+Internal Monitoring Tool - Built with Python • GitHub Actions • GitHub Pages • Pipedream Webhooks
 </div>
 
 <div style="margin-top:6px;">
