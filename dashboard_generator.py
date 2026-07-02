@@ -226,11 +226,65 @@ async function triggerRefresh() {{
 
 """
 
-    html += """
+html += f"""
 
 </tbody>
 
 </table>
+
+<footer style="
+margin-top:40px;
+padding:20px 0;
+text-align:center;
+font-size:13px;
+color:#777;
+border-top:1px solid #ddd;
+">
+
+<div style="
+display:flex;
+justify-content:center;
+align-items:center;
+gap:10px;
+font-weight:bold;
+font-size:14px;
+color:#444;
+">
+
+<img
+    src="favicon.ico"
+    width="22"
+    height="22"
+    alt="Tracking Monitor"
+>
+
+<span>Digital Partners • Tracking Monitor</span>
+
+</div>
+<div style="margin-top:6px;">
+Internal Monitoring Tool
+</div>
+
+<div style="margin-top:6px;">
+Version 1.1 • © {now.year} Digital Partners
+</div>
+<span style="
+display:inline-block;
+margin-top:10px;
+padding:5px 12px;
+background:#e8f5e9;
+color:#2e7d32;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+">
+SYSTEM STATUS: OPERATIONAL
+</span>
+<div style="margin-top:6px;font-size:12px;color:#999;">
+Dashboard generated automatically on {last_check} (Europe/Bucharest)
+</div>
+
+</footer>
 
 </body>
 
