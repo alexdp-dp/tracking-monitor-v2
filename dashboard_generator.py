@@ -89,7 +89,30 @@ tr:hover{{
 <div class="info">
 <b>Last check:</b> {last_check}<br>
 <b>Next scheduled check:</b> {next_check}
-<b>Refresh every 10 minutes - can't be done on click or more often
+<button id="refreshBtn" onclick="triggerRefresh()">Refresh</button>
+
+<script>
+async function triggerRefresh() {
+  const btn = document.getElementById('refreshBtn');
+  btn.disabled = true;
+  btn.textContent = 'Refreshing...';
+  
+  try {
+    await fetch('https://eo9c97j9tnk2wis.m.pipedream.net', {
+      method: 'POST'
+    });
+    
+    btn.textContent = 'Refreshed ✓';
+    setTimeout(() => {
+      btn.disabled = false;
+      btn.textContent = 'Refresh';
+    }, 2000);
+  } catch (error) {
+    btn.textContent = 'Error ✗';
+    btn.disabled = false;
+  }
+}
+</script>
 </div>
 
 <table>
