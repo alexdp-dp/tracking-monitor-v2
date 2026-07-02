@@ -226,7 +226,7 @@ async function triggerRefresh() {{
 
 """
 
-html += f"""
+    html += f"""
 
 </tbody>
 
