@@ -45,6 +45,9 @@ def check_site(site):
             headers=USER_AGENT,
             allow_redirects=True
         )
+        print(site["name"])
+        print(response.status_code)
+        print(response.url)
 
         html = response.text
 
