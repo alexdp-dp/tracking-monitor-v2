@@ -10,6 +10,7 @@ USER_AGENT = {
     )
 }
 
+
 def check_site(site):
 
     result = {
@@ -18,6 +19,7 @@ def check_site(site):
 
         "online": False,
         "ssl": False,
+        "http_status": "-",
 
         "gtm": {
             "status": "ERROR",
@@ -44,6 +46,9 @@ def check_site(site):
             headers=USER_AGENT,
             allow_redirects=True
         )
+
+        result["http_status"] = response.status_code
+
         print(response.headers.get("Server"))
         print(site["name"])
         print(response.status_code)
@@ -122,8 +127,19 @@ def check_site(site):
 
         result["status"] = "ERROR" if errors else "OK"
 
-    except Exception:
+    except requests.exceptions.Timeout:
 
+        result["http_status"] = "Timeout"
+        result["status"] = "ERROR"
+
+    except requests.exceptions.ConnectionError:
+
+        result["http_status"] = "DNS"
+        result["status"] = "ERROR"
+
+    except Exception as e:
+
+        result["http_status"] = type(e).__name__
         result["status"] = "ERROR"
 
     return result
