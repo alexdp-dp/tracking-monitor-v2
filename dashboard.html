@@ -76,8 +76,8 @@ tr:hover{
 <h1>Tracking Monitor</h1>
 
 <div class="info">
-<b>Last check:</b> 02.07.2026 12:47:25<br>
-<b>Next scheduled check:</b> 02.07.2026 12:57:25
+<b>Last check:</b> 02.07.2026 13:09:50<br>
+<b>Next scheduled check: around 00:00 this night.</b>
 
 </div>
 <button id="refreshBtn" onclick="triggerRefresh()">Refresh</button>
@@ -97,7 +97,7 @@ async function triggerRefresh() {
       method: 'POST'
     });
 
-    let seconds = 180;
+    let seconds = 120;
 
     btn.textContent = `Refreshed ✓ (${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')})`;
 
@@ -218,7 +218,7 @@ async function triggerRefresh() {
     </a>
 </td>
 
-<td>🔴</td>
+<td>🔴 403</td>
 
 <td>🟢</td>
 
