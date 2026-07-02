@@ -88,7 +88,7 @@ tr:hover{{
 
 <div class="info">
 <b>Last check:</b> {last_check}<br>
-<b>Next scheduled check:</b> {next_check}
+<b>Next scheduled check: around 00:00 this night.</b>
 
 </div>
 <button id="refreshBtn" onclick="triggerRefresh()">Refresh</button>
@@ -108,7 +108,7 @@ async function triggerRefresh() {{
       method: 'POST'
     }});
 
-    let seconds = 180;
+    let seconds = 120;
 
     btn.textContent = `Refreshed ✓ (${{Math.floor(seconds/60)}}:${{String(seconds%60).padStart(2,'0')}})`;
 
@@ -167,7 +167,10 @@ async function triggerRefresh() {{
 
     for site in results:
 
-        online = "🟢" if site["online"] else "🔴"
+        if site["online"]:
+            online = "🟢"
+        else:
+            online = f"🔴 {site['http_status']}"
 
         ssl = "🟢" if site["ssl"] else "🔴"
 
