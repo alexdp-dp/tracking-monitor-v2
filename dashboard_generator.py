@@ -108,36 +108,36 @@ tr:hover{{
 
 <script>
 
-async function triggerRefresh(){
+async function triggerRefresh() {{
 
     const btn = document.getElementById("refreshBtn");
 
     btn.disabled = true;
     btn.textContent = "Refreshing...";
 
-    try{
+    try {{
 
-        await fetch("https://eo9c97j9tnk2wis.m.pipedream.net",{
-            method:"POST"
-        });
+        await fetch("https://eo9c97j9tnk2wis.m.pipedream.net", {{
+            method: "POST"
+        }});
 
         btn.textContent = "Started ✓";
 
-        setTimeout(()=>{
+        setTimeout(() => {{
             location.reload();
-        },5000);
+        }}, 5000);
 
-    }
+    }}
 
-    catch(e){
+    catch(e) {{
 
-        btn.textContent="Error";
+        btn.textContent = "Error";
 
-        btn.disabled=false;
+        btn.disabled = false;
 
-    }
+    }}
 
-}
+}}
 
 </script>
 
