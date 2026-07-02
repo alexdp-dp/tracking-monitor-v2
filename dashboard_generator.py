@@ -283,6 +283,9 @@ SYSTEM STATUS: OPERATIONAL
 <div style="margin-top:6px;font-size:12px;color:#999;">
 Dashboard generated automatically on {last_check} (Europe/Bucharest)
 </div>
+<div>
+Built with Python • GitHub Actions • GitHub Pages • Pipedream Webhooks
+</div>
 
 </footer>
 
