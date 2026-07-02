@@ -91,54 +91,37 @@ tr:hover{{
 <b>Next scheduled check:</b> {next_check}
 
 </div>
-<button
-    id="refreshBtn"
-    onclick="triggerRefresh()"
-    style="
-        margin:20px 0;
-        padding:10px 18px;
-        background:#2563eb;
-        color:white;
-        border:none;
-        border-radius:6px;
-        cursor:pointer;
-    ">
-    🔄 Refresh
-</button>
+<button id="refreshBtn" onclick="triggerRefresh()">Refresh</button>
 
 <script>
-
 async function triggerRefresh() {{
 
-    const btn = document.getElementById("refreshBtn");
+  const btn = document.getElementById('refreshBtn');
 
-    btn.disabled = true;
-    btn.textContent = "Refreshing...";
+  btn.disabled = true;
+  btn.textContent = 'Refreshing...';
 
-    try {{
+  try {{
 
-        await fetch("https://eo9c97j9tnk2wis.m.pipedream.net", {{
-            method: "POST"
-        }});
+    await fetch('https://eo9c97j9tnk2wis.m.pipedream.net', {{
+      method: 'POST'
+    }});
 
-        btn.textContent = "Started ✓";
+    btn.textContent = 'Refreshed ✓';
 
-        setTimeout(() => {{
-            location.reload();
-        }}, 5000);
+    setTimeout(() => {{
+      btn.disabled = false;
+      btn.textContent = 'Refresh';
+    }}, 2000);
 
-    }}
+  }} catch (error) {{
 
-    catch(e) {{
+    btn.textContent = 'Error ✗';
+    btn.disabled = false;
 
-        btn.textContent = "Error";
-
-        btn.disabled = false;
-
-    }}
+  }}
 
 }}
-
 </script>
 
 <table>
