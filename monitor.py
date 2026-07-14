@@ -64,7 +64,7 @@ Problems detected:
 URL:
 {result["url"]}
 """
-
+            """
             send_email(
                 f"🚨 ALERT - {result['name']}",
                 body
@@ -86,7 +86,7 @@ URL:
 {result["url"]}
 """
             )
-
+            """
 
 generate_dashboard(results)
 
