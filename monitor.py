@@ -32,6 +32,11 @@ for site in sites:
 
     if old_status != result["status"]:
 
+        # ============================================
+        # EMAIL ALERTS (temporar dezactivate)
+        # ============================================
+
+        """
         if result["status"] == "ERROR":
 
             problems = []
@@ -51,7 +56,7 @@ for site in sites:
             if result["meta"]["status"] == "ERROR":
                 problems.append("• Meta Pixel missing")
 
-            body = f"""
+            body = f'''
 Tracking Monitor
 
 Website:
@@ -63,8 +68,8 @@ Problems detected:
 
 URL:
 {result["url"]}
-"""
-            
+'''
+
             send_email(
                 f"🚨 ALERT - {result['name']}",
                 body
@@ -74,7 +79,7 @@ URL:
 
             send_email(
                 f"✅ RECOVERED - {result['name']}",
-                f"""
+                f'''
 Tracking Monitor
 
 Website:
@@ -84,9 +89,9 @@ Tracking has recovered.
 
 URL:
 {result["url"]}
-"""
+'''
             )
-            
+        """
 
 generate_dashboard(results)
 
