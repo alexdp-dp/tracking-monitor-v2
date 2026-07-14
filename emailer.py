@@ -11,7 +11,7 @@ EMAIL_FROM = os.getenv("EMAIL_FROM")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 EMAIL_TO = [email.strip() for email in os.getenv("EMAIL_TO").split(",")]
 
-"""
+
 def send_email(subject, body):
 
     message = MIMEText(body)
@@ -34,4 +34,4 @@ def send_email(subject, body):
             EMAIL_TO,
             message.as_string()
         )
-"""
+
