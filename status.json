@@ -3,12 +3,12 @@
     "BLU DT": "OK",
     "Centropolitan by Cordia": "ERROR",
     "Estoria City": "ERROR",
-    "Glenwood Estate": "ERROR",
+    "Glenwood Estate": "OK",
     "Horizon City": "OK",
-    "Ivory Residence": "ERROR",
+    "Ivory Residence": "OK",
     "Nari Village": "OK",
     "Prima Oradea": "OK",
-    "Queens District": "ERROR",
+    "Queens District": "OK",
     "Regnum Residence": "OK",
-    "SAVIO": "ERROR"
+    "SAVIO": "OK"
 }
